@@ -1,4 +1,4 @@
-const input = require("fs").readFileSync("./input.txt", "utf8").split("\n");
+const input = require('fs').readFileSync('./input.txt', 'utf8').split('\n');
 // const input = require("fs").readFileSync("./test.txt", "utf8").split("\n");
 
 function count(input, instructions) {
@@ -11,7 +11,7 @@ function count(input, instructions) {
     (x + instructions.right) % rowLength,
   ];
 
-  const exists = (input, [y, x]) => (input[y] || [])[x] === "#";
+  const exists = (input, [y, x]) => (input[y] || [])[x] === '#';
 
   input.forEach(() => {
     count += exists(input, pos);

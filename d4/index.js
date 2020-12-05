@@ -1,27 +1,27 @@
-const assert = require("assert");
-const input = require("fs")
-  .readFileSync("./input.txt", "utf8")
-  .split("\n\n")
-  .map((i) => i.replace(/\n/g, " "))
+const assert = require('assert');
+const input = require('fs')
+  .readFileSync('./input.txt', 'utf8')
+  .split('\n\n')
+  .map((i) => i.replace(/\n/g, ' '))
   .map((i) =>
     i
-      .split(" ")
-      .map((j) => j.split(":"))
+      .split(' ')
+      .map((j) => j.split(':'))
       .reduce((p, c) => ({ ...p, [c[0]]: c[1] }), {})
   );
 
 const fields = [
-  "byr", // (Birth Year)
-  "iyr", // (Issue Year)
-  "eyr", // (Expiration Year)
-  "hgt", // (Height)
-  "hcl", // (Hair Color)
-  "ecl", // (Eye Color)
-  "pid", // (Passport ID)
+  'byr', // (Birth Year)
+  'iyr', // (Issue Year)
+  'eyr', // (Expiration Year)
+  'hgt', // (Height)
+  'hcl', // (Hair Color)
+  'ecl', // (Eye Color)
+  'pid', // (Passport ID)
   // "cid", // (Country ID) // Optional
 ];
 
-const eyeColors = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"];
+const eyeColors = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'];
 
 const validEntries = input.filter((i) =>
   fields.reduce((p, c) => p && !!i[c], true)
@@ -39,7 +39,7 @@ const hgt = (i) => {
   const inc = (i) => +i >= 59 && +i <= 76;
   const cm = (i) => +i >= 150 && +i <= 193;
 
-  return ["cm", "in"].includes(data.m) && data.m === "in"
+  return ['cm', 'in'].includes(data.m) && data.m === 'in'
     ? inc(data.h)
     : cm(data.h);
 };
@@ -48,20 +48,20 @@ const ecl = (i) => eyeColors.includes(i);
 const pid = (i) => i.length === 9;
 
 // TEST
-assert.strictEqual(byr("2002"), true);
-assert.strictEqual(byr("2003"), false);
-assert.strictEqual(byr(""), false);
-assert.strictEqual(hgt("60in"), true);
-assert.strictEqual(hgt("190cm"), true);
-assert.strictEqual(hgt("190in"), false);
-assert.strictEqual(hgt("190"), false);
-assert.strictEqual(hcl("#123abc"), true);
-assert.strictEqual(hcl("#123abz"), false);
-assert.strictEqual(hcl("123abc"), false);
-assert.strictEqual(ecl("brn"), true);
-assert.strictEqual(ecl("wat"), false);
-assert.strictEqual(pid("0123456789"), false);
-assert.strictEqual(pid("100000000"), true);
+assert.strictEqual(byr('2002'), true);
+assert.strictEqual(byr('2003'), false);
+assert.strictEqual(byr(''), false);
+assert.strictEqual(hgt('60in'), true);
+assert.strictEqual(hgt('190cm'), true);
+assert.strictEqual(hgt('190in'), false);
+assert.strictEqual(hgt('190'), false);
+assert.strictEqual(hcl('#123abc'), true);
+assert.strictEqual(hcl('#123abz'), false);
+assert.strictEqual(hcl('123abc'), false);
+assert.strictEqual(ecl('brn'), true);
+assert.strictEqual(ecl('wat'), false);
+assert.strictEqual(pid('0123456789'), false);
+assert.strictEqual(pid('100000000'), true);
 
 const validate = (e) =>
   byr(e.byr) &&

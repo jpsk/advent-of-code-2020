@@ -1,19 +1,19 @@
-const fs = require("fs");
+const fs = require('fs');
 const input = fs
-  .readFileSync("./input.txt", "utf8")
-  .split("\n")
-  .map((n) => n.split(" "))
+  .readFileSync('./input.txt', 'utf8')
+  .split('\n')
+  .map((n) => n.split(' '))
   .map((i) => {
     return {
-      range: i[0].split("-").map((j) => parseInt(j, 10)),
-      char: i[1].replace(":", ""),
+      range: i[0].split('-').map((j) => parseInt(j, 10)),
+      char: i[1].replace(':', ''),
       password: i[2],
     };
   });
 
 function day1(input) {
   return input.reduce((p, c) => {
-    const ch = c.password.split("").filter((i) => i === c.char);
+    const ch = c.password.split('').filter((i) => i === c.char);
     return p + (ch.length >= c.range[0] && ch.length <= c.range[1]);
   }, 0);
 }

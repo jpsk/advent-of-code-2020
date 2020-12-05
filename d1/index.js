@@ -1,8 +1,8 @@
-const fs = require("fs");
+const fs = require('fs');
 
 const input = fs
-  .readFileSync("./input.txt", "utf8")
-  .split("\n")
+  .readFileSync('./input.txt', 'utf8')
+  .split('\n')
   .map((i) => parseInt(i, 10));
 
 let found = false;
